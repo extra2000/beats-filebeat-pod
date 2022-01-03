@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: beats-filebeat-pod
+  name: beats-filebeat-pod
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: localhost/default.json
+spec:
+  restartPolicy: OnFailure
+  hostNetwork: true
+  containers:
+  - name: srv01
+    image: localhost/extra2000/elastic/filebeat
+    securityContext:
+      allowPrivilegeEscalation: false
+      privileged: false
+      capabilities:
+        add: []
+        drop:
+        - CAP_MKNOD
+        - CAP_NET_RAW
+        - CAP_AUDIT_WRITE
+      seLinuxOptions:
+        type: beats_filebeat.process
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 1000m
+      limits:
+        memory: 100Mi
+        cpu: 1000m
+    volumeMounts:
+    - mountPath: /usr/share/filebeat/filebeat.yml
+      name: filebeat-conf
+      readOnly: true
+    - mountPath: /usr/share/filebeat/modules.d
+      name: filebeat-modules
+      readOnly: true
+    - mountPath: /usr/share/filebeat/beats-certificate-bundle
+      name: beats-certificate-bundle
+      readOnly: true
+    - mountPath: /usr/share/filebeat/elastic-ca.pem
+      name: elastic-ca
+      readOnly: true
+    - mountPath: /usr/share/filebeat/data
+      name: filebeat-data
+    - mountPath: /usr/share/filebeat/logs
+      name: filebeat-logs
+    - mountPath: /mnt/es-master-01/logs
+      name: es-master-01-logs
+  volumes:
+  - name: filebeat-conf
+    hostPath:
+      path: ./configs/filebeat.yml
+  - name: filebeat-modules
+    hostPath:
+      path: ./modules
+  - name: elastic-ca
+    hostPath:
+      path: ./secrets/elastic-ca.pem
+  - name: beats-certificate-bundle
+    hostPath:
+      path: ./secrets/beats-certificate-bundle
+  - name: filebeat-data
+    persistentVolumeClaim:
+      claimName: beats-filebeat-data
+  - name: filebeat-logs
+    persistentVolumeClaim:
+      claimName: beats-filebeat-logs
+  - name: es-master-01-logs
+    persistentVolumeClaim:
+      claimName: es-master-01-logs
