@@ -47,8 +47,8 @@ spec:
       name: filebeat-data
     - mountPath: /usr/share/filebeat/logs
       name: filebeat-logs
-    - mountPath: /mnt/es-master-01/logs
-      name: es-master-01-logs
+    - mountPath: /mnt/es-master/logs
+      name: es-master-logs
   volumes:
   - name: filebeat-conf
     hostPath:
@@ -68,6 +68,6 @@ spec:
   - name: filebeat-logs
     persistentVolumeClaim:
       claimName: beats-filebeat-logs
-  - name: es-master-01-logs
+  - name: es-master-logs
     persistentVolumeClaim:
-      claimName: es-master-01-logs
+      claimName: es-master-logs

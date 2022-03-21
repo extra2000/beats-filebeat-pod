@@ -5,25 +5,25 @@
   server:
     enabled: true
     var.paths:
-      - "/mnt/es-master-01/logs/*_server.json"
+      - "/mnt/es-master/logs/*_server.json"
 
   gc:
     enabled: true
     var.paths:
-      - "/mnt/es-master-01/logs/gc.log"
+      - "/mnt/es-master/logs/gc.log"
 
   audit:
     enabled: true
     var.paths:
-      - "/mnt/es-master-01/logs/*_audit.json"
+      - "/mnt/es-master/logs/*_audit.json"
 
   slowlog:
     enabled: true
     var.paths:
-      - "/mnt/es-master-01/logs/*_index_search_slowlog.json"
-      - "/mnt/es-master-01/logs/*_index_indexing_slowlog.json"
+      - "/mnt/es-master/logs/*_index_search_slowlog.json"
+      - "/mnt/es-master/logs/*_index_indexing_slowlog.json"
 
   deprecation:
     enabled: true
     var.paths:
-      - "/mnt/es-master-01/logs/*_deprecation.json"
+      - "/mnt/es-master/logs/*_deprecation.json"
