@@ -68,10 +68,6 @@ Create pod file:
 
     cp -v beats-filebeat-pod.yaml{.example,}
 
-Get ``beats-certificate-bundle/`` and ``elastic-ca.pem`` files generated from `extra2000/elastic-logstash-pod`_. Then, put those files into ``secrets/``.
-
-.. _`extra2000/elastic-logstash-pod`: https://github.com/extra2000/elastic-logstash-pod
-
 For SELinux platform, label the following files to allow to be mounted into container:
 
 .. code-block:: bash
