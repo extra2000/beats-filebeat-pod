@@ -52,11 +52,12 @@ Create config files and fix permission:
     cp -v configs/filebeat.yml{.example,}
     chmod go-w configs/filebeat.yml
 
-Create modules:
+Create modules and fix permission:
 
 .. code-block:: bash
 
     cp -v modules/elasticsearch.yml{.example,}
+    chmod go-w modules/*
 
 .. note::
 
