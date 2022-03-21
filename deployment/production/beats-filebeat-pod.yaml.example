@@ -37,10 +37,13 @@ spec:
     - mountPath: /usr/share/filebeat/modules.d
       name: filebeat-modules
       readOnly: true
-    - mountPath: /usr/share/filebeat/beats-certificate-bundle
-      name: beats-certificate-bundle
+    - mountPath: /usr/share/filebeat/beats.crt
+      name: filebeat-ssl-crt
       readOnly: true
-    - mountPath: /usr/share/filebeat/elastic-ca.pem
+    - mountPath: /usr/share/filebeat/beats.key
+      name: filebeat-ssl-key
+      readOnly: true
+    - mountPath: /usr/share/filebeat/elastic-ca.crt
       name: elastic-ca
       readOnly: true
     - mountPath: /usr/share/filebeat/data
@@ -58,10 +61,13 @@ spec:
       path: ./modules
   - name: elastic-ca
     hostPath:
-      path: ./secrets/elastic-ca.pem
-  - name: beats-certificate-bundle
+      path: ./secrets/elastic-ca.crt
+  - name: filebeat-ssl-crt
     hostPath:
-      path: ./secrets/beats-certificate-bundle
+      path: ./secrets/beats.crt
+  - name: filebeat-ssl-key
+    hostPath:
+      path: ./secrets/beats.key
   - name: filebeat-data
     persistentVolumeClaim:
       claimName: beats-filebeat-data
