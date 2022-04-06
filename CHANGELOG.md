@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/extra2000/beats-filebeat-pod/compare/v2.0.0...v2.1.0) (2022-04-06)
+
+
+### Features
+
+* **dockerfile:** update Filebeat from `8.1.0` to `8.1.2` ([b3612af](https://github.com/extra2000/beats-filebeat-pod/commit/b3612af3b6761bc9ca835f769e9facbf102a0c20))
+
 ## [2.0.0](https://github.com/extra2000/beats-filebeat-pod/compare/v1.1.0...v2.0.0) (2022-04-02)
 
 
